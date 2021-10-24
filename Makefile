@@ -6,6 +6,10 @@ PY_DOC_LOC := ../python-docs-test
 UNIQUE_WORDS := unique_words
 ROW_WORDS := row_words
 
+help: # Use `make help` to see targets-doc-string.
+	@grep -E '^[ a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-15s\033[0m %s\n", $$1, $$2}'
+
 pyenv: ## See all the available CPython 3.10.* through 3.11.* .
 	$@ install --list | grep " 3\.1[01]"
 
@@ -35,6 +39,4 @@ generate-row-words: ## Generate all words with file names.
 gen-all: ## make generate-row-words generate-unique-words.
 	make -j2 generate-row-words generate-unique-words
 
-dw-gen: dw generate-list-of-unique-words ## make dw generate-unique-words.
-
-dw-all: dw gen-all ## make dw gen-all.
+dw-gen: dw gen-all ## make dw gen-all.

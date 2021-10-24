@@ -3,3 +3,4 @@
 !.gitignore
 !.python-version
 !Makefile
+!unique_words
