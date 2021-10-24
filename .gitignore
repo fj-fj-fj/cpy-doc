@@ -1,0 +1,5 @@
+*
+!.editorconfig
+!.gitignore
+!.python-version
+!Makefile
