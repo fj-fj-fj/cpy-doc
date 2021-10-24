@@ -3,4 +3,5 @@
 !.gitignore
 !.python-version
 !Makefile
+!README.md
 !unique_words
