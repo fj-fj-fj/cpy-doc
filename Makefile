@@ -69,3 +69,8 @@ install: ## pip and apt-get install requirements.
 	&& ../.venv/bin/python -m pip install --quiet --upgrade pip \
 	&& ../.venv/bin/pip install --quiet -r requirements.txt
 	${INFO} "All packages successfully installed"
+
+parse: ## Parse `$(UNIQUE_WORDS)` and create `english_words` file with Python.
+	${INFO} "English words parsing..."
+	@../.venv/bin/python parser.py
+	${INFO} "Successfully parsed. $$(wc -l english_words) lines"

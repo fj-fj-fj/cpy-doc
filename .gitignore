@@ -4,6 +4,8 @@
 !.python-version
 !Makefile
 !README.md
+!english_words
+!parser.py
 !requirements.txt
 !requirements_ubuntu.txt
 !unique_words
