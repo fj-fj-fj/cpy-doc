@@ -59,3 +59,13 @@ rm: ## rm logs, result-files, tar-untar-dirs.
 	@rm -f $(WGET_LOG) $(UNIQUE_WORDS) $(README)
 	@rm -rf $(PY_ARCHIVE_LOC) $(PY_DOC_LOC)
 	${INFO} "Removed"
+
+# NOTE: see https://askubuntu.com/a/668859 for more information about `-o=Dpkg::Use-Pty=0`
+install: ## pip and apt-get install requirements.
+	${INFO} "Packages [$$(echo $$(cat requirements_ubuntu.txt requirements.txt))] downloading..."
+	@sudo apt-get update -qq -y \
+	&& sudo xargs apt-get install -qq -o=Dpkg::Use-Pty=0 -y < requirements_ubuntu.txt \
+	&& python3 -m venv ../.venv \
+	&& ../.venv/bin/python -m pip install --quiet --upgrade pip \
+	&& ../.venv/bin/pip install --quiet -r requirements.txt
+	${INFO} "All packages successfully installed"
